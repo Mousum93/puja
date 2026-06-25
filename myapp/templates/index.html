@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f4f6f9;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .container{
+            background:white;
+            padding:30px;
+            width:400px;
+            border-radius:10px;
+            box-shadow:0 0 15px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:20px;
+            color:#333;
+        }
+
+        label{
+            display:block;
+            margin-top:10px;
+            margin-bottom:5px;
+            font-weight:bold;
+        }
+
+        input{
+            width:100%;
+            padding:10px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            width:100%;
+            padding:10px;
+            margin-top:20px;
+            border:none;
+            background:#007bff;
+            color:white;
+            font-size:16px;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#0056b3;
+        }
+
+        .error{
+            color:red;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .success{
+            color:green;
+            text-align:center;
+            margin-bottom:10px;
+        }
+
+        .login-link{
+            text-align:center;
+            margin-top:15px;
+        }
+
+        .login-link a{
+            text-decoration:none;
+            color:#007bff;
+            font-weight:bold;
+        }
+
+        .login-link a:hover{
+            text-decoration:underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registration Form</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% if error %}
+            <p class="error">{{ error }}</p>
+            {% endif %}
+
+            {% if msg %}
+            <p class="success">{{ msg }}</p>
+            {% endif %}
+
+            <label>First Name</label>
+            <input type="text" name="fname" placeholder="Enter First Name">
+
+            <label>Last Name</label>
+            <input type="text" name="lname" placeholder="Enter Last Name">
+
+            <label>Username</label>
+            <input type="text" name="uname" placeholder="Enter Username">
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter Password">
+
+            <button type="submit">Register</button>
+        </form>
+
+        <div class="login-link">
+            <a href="{% url 'login' %}">Login Here</a>
+        </div>
+    </div>
+
+</body>
+</html>
